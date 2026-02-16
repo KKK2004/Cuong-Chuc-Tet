@@ -1,0 +1,81 @@
+!doctype html
+html lang=vi
+head
+  meta charset=utf-8 
+  meta name=viewport content=width=device-width,initial-scale=1 
+  titleHappy New Year 2026title
+
+  !-- font gọn, sang --
+  link rel=preconnect href=httpsfonts.googleapis.com
+  link rel=preconnect href=httpsfonts.gstatic.com crossorigin
+  link href=httpsfonts.googleapis.comcss2family=Interwght@400;600;700;800;900&display=swap rel=stylesheet
+
+  link rel=stylesheet href=.style.css 
+head
+
+body
+  !-- Canvas pháo hoa (JS vẽ lên đây) --
+  canvas id=fxcanvas
+
+  main class=wrap
+    section class=hero
+      !-- pháo hoa tráiphải (CSS) --
+      div class=spark spark-left aria-hidden=truediv
+      div class=spark spark-right aria-hidden=truediv
+
+      !-- khung + chữ 2026 --
+      div class=frame
+        div class=year
+          span class=y120span
+          span class=y2 id=yearBig26span
+        div
+        div class=tagline
+          div class=smallHAPPYdiv
+          div class=bigNEW YEARdiv
+        div
+      div
+
+      !-- panel điều khiển --
+      section class=panel
+        div class=row
+          div class=field
+            label for=nameTên người nhậnlabel
+            input id=name placeholder=Ví dụ Cường maxlength=30 
+          div
+
+          div class=field
+            label for=yearNămlabel
+            input id=year type=number min=2020 max=2100 value=2026 
+          div
+        div
+
+        div class=row
+          button id=apply class=btn goldÁp dụngbutton
+          button id=celebrate class=btn redBắn pháo hoabutton
+          button id=toggleMusic class=btn ghost🔇 Nhạcbutton
+        div
+
+        div class=countdown
+          div class=cdspan id=d00spansmallNgàysmalldiv
+          div class=cdspan id=h00spansmallGiờsmalldiv
+          div class=cdspan id=m00spansmallPhútsmalldiv
+          div class=cdspan id=s00spansmallGiâysmalldiv
+        div
+
+        p class=hint id=headlineChúc mừng năm mới! ✨p
+        p class=sub id=subChúc bạn một năm mới bình an, nhiều may mắn và thành công 🎉p
+      section
+    section
+
+    footer class=foot
+      span id=marquee✨ Chúc mừng năm mới — sức khỏe, học giỏi, tiền về như nước ✨span
+    footer
+  main
+
+  audio id=music loop
+    source src=.newyear.mp3 type=audiompeg 
+  audio
+
+  script src=.app.jsscript
+body
+html
