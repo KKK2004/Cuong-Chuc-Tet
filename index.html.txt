@@ -4,44 +4,59 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Chúc mừng năm mới 🎉</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- Fonts giống kiểu thư pháp + chữ rõ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <canvas id="fx"></canvas>
 
   <main class="wrap">
-    <header class="top">
-      <div class="badge">🎆 NEW YEAR</div>
-      <h1 id="headline">Chúc mừng năm mới!</h1>
-      <p id="sub">Chúc bạn một năm mới bình an, nhiều may mắn và thành công ✨</p>
-    </header>
+    <section class="hero">
+      <div class="hero-ring">
+        <div class="hero-badge">🌸 NEW YEAR</div>
 
-    <section class="card">
-      <div class="row">
-        <div class="field">
-          <label for="name">Tên người nhận</label>
-          <input id="name" placeholder="Ví dụ: Cường" maxlength="30" />
+        <h1 id="headline" class="hero-title">
+          Chúc Mừng<br/>Năm Mới
+        </h1>
+
+        <p id="sub" class="hero-sub">
+          Mã đáo thành công<br/>
+          Công thành danh toại
+        </p>
+
+        <div class="panel">
+          <div class="row">
+            <div class="field">
+              <label for="name">Tên người nhận</label>
+              <input id="name" placeholder="Ví dụ: Cường" maxlength="30" />
+            </div>
+            <div class="field">
+              <label for="year">Năm</label>
+              <input id="year" type="number" min="2020" max="2100" />
+            </div>
+          </div>
+
+          <div class="row">
+            <button id="apply" class="btn btn-gold">Áp dụng</button>
+            <button id="celebrate" class="btn btn-red">Bắn pháo hoa</button>
+            <button id="toggleMusic" class="btn btn-ghost">🔇 Nhạc</button>
+          </div>
+
+          <div class="countdown">
+            <div class="cd-item"><span id="d">00</span><small>Ngày</small></div>
+            <div class="cd-item"><span id="h">00</span><small>Giờ</small></div>
+            <div class="cd-item"><span id="m">00</span><small>Phút</small></div>
+            <div class="cd-item"><span id="s">00</span><small>Giây</small></div>
+          </div>
+
+          <p class="hint">Tip: Click bất kỳ chỗ nào để tạo pháo hoa 🎇</p>
         </div>
-        <div class="field">
-          <label for="year">Năm</label>
-          <input id="year" type="number" min="2020" max="2100" />
-        </div>
       </div>
-
-      <div class="row">
-        <button id="apply" class="btn primary">Áp dụng</button>
-        <button id="celebrate" class="btn">Bắn pháo hoa</button>
-        <button id="toggleMusic" class="btn">🔇 Nhạc</button>
-      </div>
-
-      <div class="countdown">
-        <div class="cd-item"><span id="d">00</span><small>Ngày</small></div>
-        <div class="cd-item"><span id="h">00</span><small>Giờ</small></div>
-        <div class="cd-item"><span id="m">00</span><small>Phút</small></div>
-        <div class="cd-item"><span id="s">00</span><small>Giây</small></div>
-      </div>
-
-      <p class="hint">Tip: Ấn <b>Bắn pháo hoa</b> hoặc click bất kỳ chỗ nào để tạo hiệu ứng 🎇</p>
     </section>
 
     <footer class="foot">
@@ -49,11 +64,10 @@
     </footer>
   </main>
 
-  <!-- Nhạc nền: dùng file mp3 của bạn đặt cùng thư mục và đổi tên thành newyear.mp3 -->
   <audio id="music" loop>
     <source src="newyear.mp3" type="audio/mpeg" />
   </audio>
 
-  <script src="app.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
