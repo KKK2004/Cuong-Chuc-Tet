@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chúc mừng năm mới 🎉</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="fx"></canvas>
+
+  <main class="wrap">
+    <header class="top">
+      <div class="badge">🎆 NEW YEAR</div>
+      <h1 id="headline">Chúc mừng năm mới!</h1>
+      <p id="sub">Chúc bạn một năm mới bình an, nhiều may mắn và thành công ✨</p>
+    </header>
+
+    <section class="card">
+      <div class="row">
+        <div class="field">
+          <label for="name">Tên người nhận</label>
+          <input id="name" placeholder="Ví dụ: Cường" maxlength="30" />
+        </div>
+        <div class="field">
+          <label for="year">Năm</label>
+          <input id="year" type="number" min="2020" max="2100" />
+        </div>
+      </div>
+
+      <div class="row">
+        <button id="apply" class="btn primary">Áp dụng</button>
+        <button id="celebrate" class="btn">Bắn pháo hoa</button>
+        <button id="toggleMusic" class="btn">🔇 Nhạc</button>
+      </div>
+
+      <div class="countdown">
+        <div class="cd-item"><span id="d">00</span><small>Ngày</small></div>
+        <div class="cd-item"><span id="h">00</span><small>Giờ</small></div>
+        <div class="cd-item"><span id="m">00</span><small>Phút</small></div>
+        <div class="cd-item"><span id="s">00</span><small>Giây</small></div>
+      </div>
+
+      <p class="hint">Tip: Ấn <b>Bắn pháo hoa</b> hoặc click bất kỳ chỗ nào để tạo hiệu ứng 🎇</p>
+    </section>
+
+    <footer class="foot">
+      <span id="marquee">✨ Chúc mừng năm mới — sức khỏe, học giỏi, tiền về như nước ✨</span>
+    </footer>
+  </main>
+
+  <!-- Nhạc nền: dùng file mp3 của bạn đặt cùng thư mục và đổi tên thành newyear.mp3 -->
+  <audio id="music" loop>
+    <source src="newyear.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+const $ = (s) => document.querySelector(s);
+const pad2 = (n) => String(n).padStart(2, "0");
+
+const headline = $("#headline");
+const sub = $("#sub");
+const nameInput = $("#name");
+const yearInput = $("#year");
+const applyBtn = $("#apply");
+const celebrateBtn = $("#celebrate");
+const toggleMusicBtn = $("#toggleMusic");
+const music = $("#music");
+
+const dEl = $("#d"), hEl = $("#h"), mEl = $("#m"), sEl = $("#s");
+
+const now = new Date();
+let targetYear = now.getFullYear() + 1;
+yearInput.value = targetYear;
+
+function applyGreeting() {
+  const nm = nameInput.value.trim();
+  const yr = Number(yearInput.value) || targetYear;
+
+  targetYear = yr;
+
+  const who = nm ? `, ${nm}` : "";
+  headline.textContent = `Chúc mừng năm mới${who}! 🎉`;
+  sub.textContent = `Chúc ${nm || "bạn"} năm ${yr} sức khỏe, may mắn, và bứt phá mục tiêu ✨`;
+}
+applyBtn.addEventListener("click", applyGreeting);
+
+function tickCountdown() {
+  const target = new Date(targetYear, 0, 1, 0, 0, 0);
+  const diff = target - new Date();
+
+  if (diff <= 0) {
+    dEl.textContent = "00";
+    hEl.textContent = "00";
+    mEl.textContent = "00";
+    sEl.textContent = "00";
+    return;
+  }
+
+  const totalSec = Math.floor(diff / 1000);
+  const days = Math.floor(totalSec / 86400);
+  const hours = Math.floor((totalSec % 86400) / 3600);
+  const mins = Math.floor((totalSec % 3600) / 60);
+  const secs = totalSec % 60;
+
+  dEl.textContent = pad2(days);
+  hEl.textContent = pad2(hours);
+  mEl.textContent = pad2(mins);
+  sEl.textContent = pad2(secs);
+}
+setInterval(tickCountdown, 250);
+tickCountdown();
+
+// Music toggle
+let musicOn = false;
+async function toggleMusic() {
+  try {
+    if (!musicOn) {
+      await music.play();
+      musicOn = true;
+      toggleMusicBtn.textContent = "🔊 Nhạc";
+    } else {
+      music.pause();
+      musicOn = false;
+      toggleMusicBtn.textContent = "🔇 Nhạc";
+    }
+  } catch {
+    alert("Không phát được nhạc. Hãy đặt file newyear.mp3 cùng thư mục, rồi bấm lại.");
+  }
+}
+toggleMusicBtn.addEventListener("click", toggleMusic);
+
+// Canvas fireworks
+const canvas = $("#fx");
+const ctx = canvas.getContext("2d");
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+const particles = [];
+function rand(a, b) { return a + Math.random() * (b - a); }
+
+function boom(x, y) {
+  const count = Math.floor(rand(60, 110));
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x, y,
+      vx: rand(-4, 4),
+      vy: rand(-6, 2),
+      life: rand(40, 90),
+      r: rand(1.2, 2.6),
+      hue: rand(0, 360)
+    });
+  }
+}
+
+function draw() {
+  ctx.fillStyle = "rgba(0,0,0,0.18)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.life -= 1;
+    p.vy += 0.08;
+    p.vx *= 0.99;
+    p.vy *= 0.99;
+
+    p.x += p.vx;
+    p.y += p.vy;
+
+    const alpha = Math.max(0, p.life / 90);
+    ctx.beginPath();
+    ctx.fillStyle = `hsla(${p.hue}, 100%, 65%, ${alpha})`;
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+
+    if (p.life <= 0) particles.splice(i, 1);
+  }
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+celebrateBtn.addEventListener("click", () => {
+  boom(rand(100, canvas.width - 100), rand(80, canvas.height * 0.55));
+});
+window.addEventListener("pointerdown", (e) => boom(e.clientX, e.clientY));
+
+setInterval(() => {
+  if (particles.length < 800) {
+    boom(rand(80, canvas.width - 80), rand(60, canvas.height * 0.5));
+  }
+}, 900);
+
+// Color glow headline
+let hue = 0;
+setInterval(() => {
+  hue = (hue + 2) % 360;
+  headline.style.filter = `drop-shadow(0 10px 25px hsla(${hue}, 100%, 70%, .35))`;
+}, 50);
