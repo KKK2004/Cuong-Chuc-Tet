@@ -50,8 +50,8 @@ function applyGreeting() {
   if (yearBig) yearBig.textContent = String(yr).slice(-2);
 
   // update lời chúc
-  if (headline) headline.textContent = nm ? `Chúc mừng năm mới, ${nm}! ✨` : "Chúc mừng năm mới! ✨";
-  if (sub) sub.textContent = `Chúc ${nm || "bạn"} năm ${yr} sức khỏe dồi dào, thật nhiều may mắn và thành công rực rỡ 🎉`;
+  if (headline) headline.textContent = nm ? `Happy New Year, ${nm}! ✨` : "Happy New Year! ✨";
+  if (sub) sub.textContent = `Em/Anh/Cường xin chúc ${nm || "bạn"} năm mới ${yr} thật nhiều sức khỏe, nhiều may mắn và niềm vui trong cuộc ^^✨`;
 }
 
 applyBtn?.addEventListener("click", applyGreeting);
