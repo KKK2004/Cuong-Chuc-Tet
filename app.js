@@ -210,3 +210,38 @@ setInterval(() => {
    Init
 ========================= */
 applyGreeting(); // set nội dung ban đầu
+let player;
+let ytReady = false;
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '0',
+    width: '0',
+    videoId: 'n8l_j0UKT3Y',
+    playerVars: {
+      autoplay: 1,
+      loop: 1,
+      playlist: 'n8l_j0UKT3Y',
+    },
+    events: {
+      onReady: (event) => {
+        ytReady = true;
+        event.target.playVideo();
+      }
+    }
+  });
+}
+
+// nút nhạc
+toggleMusicBtn?.addEventListener("click", () => {
+  if (!ytReady) return;
+
+  const state = player.getPlayerState();
+  if (state === 1) {
+    player.pauseVideo();
+    toggleMusicBtn.textContent = "🔇 Nhạc";
+  } else {
+    player.playVideo();
+    toggleMusicBtn.textContent = "🔊 Nhạc";
+  }
+});
