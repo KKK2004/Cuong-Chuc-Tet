@@ -17,11 +17,6 @@ const celebrateBtn = $("#celebrate");
 const toggleMusicBtn = $("#toggleMusic");
 const music = $("#music");
 
-// countdown spans
-const dEl = $("#d");
-const hEl = $("#h");
-const mEl = $("#m");
-const sEl = $("#s");
 
 // số năm to trên khung (2 số cuối)
 const yearBig = $("#yearBig");
@@ -60,37 +55,6 @@ function applyGreeting() {
 }
 
 applyBtn?.addEventListener("click", applyGreeting);
-
-/* =========================
-   Countdown
-========================= */
-function tickCountdown() {
-  // đếm ngược tới 00:00 ngày 01/01 của targetYear
-  const target = new Date(targetYear, 0, 1, 0, 0, 0);
-  const diffMs = target.getTime() - Date.now();
-
-  if (diffMs <= 0) {
-    if (dEl) dEl.textContent = "00";
-    if (hEl) hEl.textContent = "00";
-    if (mEl) mEl.textContent = "00";
-    if (sEl) sEl.textContent = "00";
-    return;
-  }
-
-  const totalSec = Math.floor(diffMs / 1000);
-  const days = Math.floor(totalSec / 86400);
-  const hours = Math.floor((totalSec % 86400) / 3600);
-  const mins = Math.floor((totalSec % 3600) / 60);
-  const secs = totalSec % 60;
-
-  if (dEl) dEl.textContent = pad2(days);
-  if (hEl) hEl.textContent = pad2(hours);
-  if (mEl) mEl.textContent = pad2(mins);
-  if (sEl) sEl.textContent = pad2(secs);
-}
-
-setInterval(tickCountdown, 250);
-tickCountdown();
 
 /* =========================
    Music toggle
