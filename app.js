@@ -74,7 +74,7 @@ async function toggleMusic() {
       toggleMusicBtn.textContent = "🔇 Nhạc";
     }
   } catch (e) {
-    alert("Không phát được nhạc. Hãy đặt file newyear.mp3 cùng thư mục (root) và bấm lại.");
+    
   }
 }
 
